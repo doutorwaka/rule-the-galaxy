@@ -364,7 +364,7 @@
 "Assets/Scripts/EnemyManager.cs"
 "Assets/Scripts/PlayerControls.cs"
 "Assets/Scripts/PlayerManager.cs"
-"Assets/Scripts/PlayerShip.cs"
+"Assets/Scripts/Ship.cs"
 -langversion:9.0
 
 /deterministic

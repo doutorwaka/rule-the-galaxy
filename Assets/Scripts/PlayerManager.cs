@@ -5,38 +5,62 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public GameObject[] bulletsPrefab;
-    private PlayerShip playerShip;
-    private PlayerControls playerControls;
     private Dictionary<string, GameObject> bullets;
+    private PlayerControls playerControls;
+    private GameObject playerShipGo;
+    private Ship playerShip;
+
     // Start is called before the first frame update
     void Start()
-    {        
-        InitializePlayerShip();        
-        playerControls = gameObject.GetComponentInChildren<PlayerControls>();
-        InitializePlayerBullets();
+    {
+        PrepareAllBulletsPrefabs();
+        InstantiateInitialShip();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Manage the player movement
-        playerControls.MovePlayer(playerShip.getSpeed(), playerShip.getRotationSpeed());
         
-        // Manage the ship bullets
-        List<Bullet> playerBullets = playerShip.getWeapons();
-        playerControls.Shoot(playerShip.getBulletCooldown(), playerBullets, bullets);
     }
 
-    private void InitializePlayerShip(){
-        playerShip = new PlayerShip(270f, 5f, 1f, 3);
-        playerShip.addWeapon(new Bullet("BulletPlayerLvl1", 10f, 0f, 10f));
+    public void SetPlayerShip(GameObject playerShipGo){
+        this.playerShipGo = playerShipGo;
     }
 
-    private void InitializePlayerBullets(){
-        bullets = new Dictionary<string, GameObject>();
-        foreach(GameObject bullet in bulletsPrefab){
-            bullet.SetActive(false);
-            bullets.Add(bullet.name, bullet);
+    public void SetShip(Ship playerShip){
+        this.playerShip = playerShip;
+    }
+
+    private void PrepareAllBulletsPrefabs(){
+        this.bullets = new Dictionary<string, GameObject>();
+
+        foreach(GameObject b in this.bulletsPrefab){
+            bullets.Add(b.name, b);
         }
+    }
+
+    private void InstantiateInitialShip(){
+        // Create the initial player ship characteristcs        
+        playerShip = new Ship(1, 1, 10f, 120f, 1);        
+
+        // Vinculate the player ship game object
+        playerShipGo = GameObject.Find("PlayerShip");
+
+        // If we found the player ship game object,
+        // vinculate the player controls with it.
+        if(playerShipGo != null){
+            playerControls = playerShipGo.AddComponent<PlayerControls>();
+            playerControls.SetShip(playerShip);
+
+            // Create the initial bullet characteristcs
+            Bullet initialBullet = new Bullet("BlueBeamLvl1", 20f, 0f, 20f, 1f);
+            // Add the initial bullet characteristcs and prefab to the 
+            // ship and player controls respectively
+            AddBulletsToShip(initialBullet);
+        }
+    }
+
+    private void AddBulletsToShip(Bullet b){
+        playerControls.AddBullet(b, this.bullets[b.GetName()] );
     }
 }
