@@ -37,12 +37,14 @@ public class PlayerControls : MonoBehaviour
             if(b.GetCooldown() < b.GetTimePast()){
                 b.ResetTimePast();                
                 GameObject bullet = Instantiate<GameObject>(this.bulletsPrefab[i]);
+                bullet.name = b.GetName();
                 bullet.transform.position = transform.position;
                 bullet.transform.rotation = transform.rotation;
                 
                 BulletMovement bmComp = bullet.AddComponent<BulletMovement>();
-                bmComp.setMaxRange(b.GetMaxRange());
-                bmComp.setSpeed(b.GetVelocity());
+                bmComp.SetMaxRange(b.GetMaxRange());
+                bmComp.SetSpeed(b.GetVelocity());
+                bmComp.setDirection(Vector3.up);
 
                 bullet.SetActive(true);
             }

@@ -360,6 +360,7 @@
 "Assets/Scripts/Bullet.cs"
 "Assets/Scripts/BulletMovement.cs"
 "Assets/Scripts/CamFollowPlayer.cs"
+"Assets/Scripts/EnemyControl.cs"
 "Assets/Scripts/EnemyFollowPlayer.cs"
 "Assets/Scripts/EnemyManager.cs"
 "Assets/Scripts/PlayerControls.cs"

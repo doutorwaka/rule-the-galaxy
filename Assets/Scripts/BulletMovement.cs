@@ -7,6 +7,7 @@ public class BulletMovement : MonoBehaviour
     private float maxRange = 10f;
     private float speed = 10f;
     private float totalMoved = 0;
+    private Vector3 direction;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,18 +21,18 @@ public class BulletMovement : MonoBehaviour
         VerifyOutOfRange();
     }
 
-    public void setMaxRange(float maxRange){
+    public void SetMaxRange(float maxRange){
         this.maxRange = maxRange;
     }
 
-    public void setSpeed(float speed){
+    public void SetSpeed(float speed){
         this.speed = speed;
     }
 
     private void MoveBullet(){
         float moveAmount = speed * Time.deltaTime;        
         totalMoved += moveAmount;
-        Vector3 moveVector = Vector3.up * moveAmount;
+        Vector3 moveVector = this.direction * moveAmount;
         transform.Translate(moveVector);
     }
 
@@ -39,5 +40,9 @@ public class BulletMovement : MonoBehaviour
         if(totalMoved > maxRange){
             Destroy(gameObject);
         }
+    }
+
+    public void setDirection(Vector3 direction){
+        this.direction = direction;
     }
 }

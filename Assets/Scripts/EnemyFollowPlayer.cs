@@ -23,13 +23,13 @@ public class EnemyFollowPlayer : MonoBehaviour
         if(player == null)
             return;
 
-        Vector3 playerDirection = calculateRouteDirection();
+        Vector3 playerDirection = CalculateRouteDirection();
 
         RotateEnemy(playerDirection);
         TranslateEnemy(playerDirection);
     }
 
-    private Vector3 calculateRouteDirection(){
+    private Vector3 CalculateRouteDirection(){
         Vector3 playerDirection = player.transform.position - transform.position;
         playerDirection.Normalize();
 
@@ -50,5 +50,13 @@ public class EnemyFollowPlayer : MonoBehaviour
         float moveAmount = velocity * Time.deltaTime;
         Vector3 moveVector = Vector3.down * moveAmount;
         transform.Translate(moveVector);
+    }
+
+    public void SetVelocity(float velocity){
+        this.velocity = velocity;
+    }
+
+    public void SetTurnRate(float turnRate){
+        this.turnRate = turnRate;
     }
 }
