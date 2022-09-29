@@ -6,12 +6,17 @@ public class EnemyManager : MonoBehaviour
 {
     public GameObject[] bulletsPrefabFromUnity;
     public GameObject[] enemyShipPrefabFromUnity;
+    public float xMaxOffsetEnemySpawnPosition;
+    public float yMaxOffsetEnemySpawnPosition;
+    public float xMinOffsetEnemySpawnPosition;
+    public float yMinOffsetEnemySpawnPosition;
     private Dictionary<string, GameObject>[] enemyShipsPrefabPerLvl;
     private Dictionary<string, Ship>[] enemyShipsDataPerLvl;
     private Dictionary<string, GameObject> bulletsPrefab;
     private GameObject playerShipGo = null;
     private float lastSpawntimePast = 0f;
     private float enemySpawnCooldown = 2f;
+    private string enemyTag = "Enemy";
     
     // Start is called before the first frame update
     void Start()
@@ -100,7 +105,6 @@ public class EnemyManager : MonoBehaviour
 
         foreach(KeyValuePair<string, GameObject> pair in this.enemyShipsPrefabPerLvl[lvl]){
             if(i == sortedKey){
-                Debug.Log("  -- i: " + i);
                 return pair.Value;
             }
             i++;
@@ -110,20 +114,17 @@ public class EnemyManager : MonoBehaviour
     }
 
     private Vector3 RandomNewEnemyPosition(Vector3 initialPosition){
-        float xMaxDistance = 10f;
-        float yMaxDistance = 10f;
-
         int plusOrMinus = (Random.Range(0, 2) == 0) ? -1 : 1;
 
         float xNewPos = initialPosition.x +
                 plusOrMinus * 
-                Random.Range(xMaxDistance/3, xMaxDistance);
+                Random.Range(xMinOffsetEnemySpawnPosition, xMaxOffsetEnemySpawnPosition);
         
         plusOrMinus = (Random.Range(0, 2) == 0) ? -1 : 1;
 
         float yNewPos = initialPosition.y + 
                 plusOrMinus * 
-                Random.Range(yMaxDistance/3, yMaxDistance);
+                Random.Range(yMinOffsetEnemySpawnPosition, yMaxOffsetEnemySpawnPosition);
 
         return new Vector3(xNewPos, yNewPos, initialPosition.z);
     }
@@ -160,11 +161,12 @@ public class EnemyManager : MonoBehaviour
             this.enemyShipsDataPerLvl[i] = new Dictionary<string, Ship>();
 
             for(int j = 0; j < enemyShipPrefabFromUnity[i].transform.childCount; j++){
-                GameObject enemyShip = enemyShipPrefabFromUnity[i].transform.GetChild(j).gameObject;
+                GameObject enemyShip = enemyShipPrefabFromUnity[i].transform.GetChild(j).gameObject;                
+                enemyShip.tag = this.enemyTag;
                 this.enemyShipsPrefabPerLvl[i].Add(enemyShip.name, enemyShip);
 
                 Ship enemyShipData = new Ship(0, 2, 3f, 30f, 1);
-                Bullet bullet = new Bullet("BulletEnemylvl1", 10f, 0f, 10f, 2f);
+                Bullet bullet = new Bullet("BulletEnemylvl1", 10f, 0f, 10f, 2f, 1, 1);
                 enemyShipData.AddBullet(bullet);
 
                 this.enemyShipsDataPerLvl[i].Add(enemyShip.name, enemyShipData);

@@ -148,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 123526586}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.75591016, y: 1.5913175, z: 2.14754}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -171,6 +171,10 @@ MonoBehaviour:
   - {fileID: 7399454372348341271, guid: 155b96c130585784387cc7b50ce5d2ed, type: 3}
   enemyShipPrefabFromUnity:
   - {fileID: 2176683219098439008, guid: 22a1529955c7a8142bc3979a55c7f3d1, type: 3}
+  xMaxOffsetEnemySpawnPosition: 15
+  yMaxOffsetEnemySpawnPosition: 15
+  xMinOffsetEnemySpawnPosition: 7
+  yMinOffsetEnemySpawnPosition: 7
 --- !u!1 &144770341
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 144770341}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.75591016, y: 1.5913175, z: 2.14754}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -326,8 +330,8 @@ Camera:
   m_GameObject: {fileID: 905557779}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -344,7 +348,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -626,15 +630,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 205201813706493942, guid: 6ebf76e58da0eb249ac448acb52bb3ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.8840898
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 205201813706493942, guid: 6ebf76e58da0eb249ac448acb52bb3ca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.4513175
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 205201813706493942, guid: 6ebf76e58da0eb249ac448acb52bb3ca, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.14754
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 205201813706493942, guid: 6ebf76e58da0eb249ac448acb52bb3ca, type: 3}
       propertyPath: m_LocalRotation.w

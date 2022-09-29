@@ -28,6 +28,7 @@ public class EnemyControl : MonoBehaviour
                     b.ResetTimePast();                
                     GameObject bullet = Instantiate<GameObject>(this.bulletsPrefab[i]);
                     bullet.name = b.GetName();
+                    bullet.tag = gameObject.tag;
                     bullet.transform.position = transform.position;
                     bullet.transform.rotation = transform.rotation;                    
                     
@@ -35,6 +36,9 @@ public class EnemyControl : MonoBehaviour
                     bmComp.SetMaxRange(b.GetMaxRange());
                     bmComp.SetSpeed(b.GetVelocity());
                     bmComp.setDirection(Vector3.down);
+
+                    DoDamage bulletDamage = bullet.AddComponent<DoDamage>();
+                    bulletDamage.SetDamageAmount(b.GetDamage());
 
                     bullet.SetActive(true);
                 }

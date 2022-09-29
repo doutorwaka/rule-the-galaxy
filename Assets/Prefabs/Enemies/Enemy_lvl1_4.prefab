@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3461656566104116363}
   - component: {fileID: 3461656566104116360}
+  - component: {fileID: 1349438113524237276}
+  - component: {fileID: 5465021548818997173}
   m_Layer: 0
   m_Name: Enemy_lvl1_4
   m_TagString: Untagged
@@ -84,3 +86,64 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1349438113524237276
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3461656566104116361}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.82, y: 0.84}
+    newSize: {x: 0.82, y: 0.84}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.104498595, y: 0.41756976}
+      - {x: 0, y: 0.42}
+      - {x: -0.101492465, y: 0.41906202}
+      - {x: -0.13725919, y: 0.35569796}
+      - {x: -0.4075698, y: 0.19876921}
+      - {x: -0.4051396, y: -0.28924498}
+      - {x: -0.17539014, y: -0.42010716}
+      - {x: -0.069048375, y: -0.4175698}
+      - {x: -0.072763056, y: -0.32180014}
+      - {x: 0.055779435, y: -0.32315165}
+      - {x: 0.06803359, y: -0.4173786}
+      - {x: 0.18470617, y: -0.41973093}
+      - {x: 0.4027094, y: -0.28832477}
+      - {x: 0.4027094, y: 0.1957806}
+      - {x: 0.13418798, y: 0.3568148}
+--- !u!50 &5465021548818997173
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3461656566104116361}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

@@ -40,11 +40,15 @@ public class PlayerControls : MonoBehaviour
                 bullet.name = b.GetName();
                 bullet.transform.position = transform.position;
                 bullet.transform.rotation = transform.rotation;
+                bullet.tag = gameObject.tag;
                 
                 BulletMovement bmComp = bullet.AddComponent<BulletMovement>();
                 bmComp.SetMaxRange(b.GetMaxRange());
                 bmComp.SetSpeed(b.GetVelocity());
                 bmComp.setDirection(Vector3.up);
+
+                DoDamage bulletDamage = bullet.AddComponent<DoDamage>();
+                bulletDamage.SetDamageAmount(b.GetDamage());
 
                 bullet.SetActive(true);
             }

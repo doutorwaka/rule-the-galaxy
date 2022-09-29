@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2400666744767396653}
   - component: {fileID: 2400666744767396658}
+  - component: {fileID: 6642307050154883072}
+  - component: {fileID: 7321692763212897794}
   m_Layer: 0
   m_Name: Enemy_lvl1_2
   m_TagString: Untagged
@@ -84,3 +86,66 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &6642307050154883072
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2400666744767396659}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.04, y: 0.84}
+    newSize: {x: 1.04, y: 0.84}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.23517212, y: -0.41999993}
+      - {x: 0.52, y: 0.07137978}
+      - {x: 0.5172413, y: 0.15793079}
+      - {x: 0.34793168, y: 0.1606885}
+      - {x: 0.19931054, y: 0.27448174}
+      - {x: 0.17259438, y: 0.3245765}
+      - {x: 0.0000009164214, y: 0.41724136}
+      - {x: -0.1717211, y: 0.3246559}
+      - {x: -0.18940373, y: 0.2809276}
+      - {x: -0.3479308, y: 0.15379234}
+      - {x: -0.5144827, y: 0.15793078}
+      - {x: -0.51724136, y: 0.07517304}
+      - {x: -0.22862017, y: -0.4155173}
+      - {x: -0.068621136, y: -0.41172406}
+      - {x: -0.08420204, y: -0.25038165}
+      - {x: 0.08793169, y: -0.25344718}
+      - {x: 0.063793264, y: -0.42}
+--- !u!50 &7321692763212897794
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2400666744767396659}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
