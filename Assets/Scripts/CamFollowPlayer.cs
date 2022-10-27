@@ -10,8 +10,7 @@ public class CamFollowPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        initialZ = transform.position.z;
-        player = GameObject.FindGameObjectWithTag("Player");
+        initialZ = transform.position.z;        
         bgsOffset = gameObject.GetComponentsInChildren<BackgroundOffset>();
     }
 
@@ -22,6 +21,13 @@ public class CamFollowPlayer : MonoBehaviour
     }
 
     void LateUpdate(){
+        // Try find the player
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        // If the player was not found, return later.
+        if(player == null)
+            return;
+
         Vector3 newCamPosition = player.transform.position;
         newCamPosition.z = initialZ;
         transform.position = newCamPosition;

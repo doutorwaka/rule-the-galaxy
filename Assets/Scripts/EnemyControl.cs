@@ -39,6 +39,9 @@ public class EnemyControl : MonoBehaviour
 
                     DoDamage bulletDamage = bullet.AddComponent<DoDamage>();
                     bulletDamage.SetDamageAmount(b.GetDamage());
+                    bulletDamage.SetDamageAmount(b.GetDamage());
+                    bulletDamage.SetIsImortal(false);
+                    bulletDamage.SetHpAmount(b.GetHp());   
 
                     bullet.SetActive(true);
                 }

@@ -49,10 +49,14 @@ public class EnemyManager : MonoBehaviour
         // Otherwise, spawn an Random enemy
         // according the player ship lvl
         int lvl = 0;
+        // Sort a random enemy ship name
+        string newEnemyShipName = SortEnemyShipName(lvl);
         // Get the correct enemy prefab
-        GameObject enemyPrefab = SelectEnemyShipPrefab(lvl);
+        GameObject newEnemyPrefab = SelectEnemyShipPrefab(lvl, newEnemyShipName);
+        // Get enemy ship data
+        Ship newEnemyShipData = SelectEnemyShipData(lvl, newEnemyShipName);
         
-        if(enemyPrefab == null){
+        if(newEnemyPrefab == null){
             Debug.Log("O EnemyPrefab tá vindo nulo!");
             return;
         }
@@ -65,11 +69,19 @@ public class EnemyManager : MonoBehaviour
         Quaternion newEnemyRot = RotateEnemy(direction);
         //Quaternion newEnemyRot = playerShipGo.transform.rotation;
         // Spawn the new enemy
-        GameObject newEnemy = Instantiate(enemyPrefab, newEnemyPos, newEnemyRot);  
-        newEnemy.name = enemyPrefab.name;      
+        GameObject newEnemy = Instantiate(newEnemyPrefab, newEnemyPos, newEnemyRot);  
+        newEnemy.name = newEnemyPrefab.name;      
+        // Add follow player script
         EnemyFollowPlayer followPlayerShip = newEnemy.AddComponent<EnemyFollowPlayer>();
+        // Add do damage script
+        DoDamage newEnemyDoDamage = newEnemy.AddComponent<DoDamage>();
+        newEnemyDoDamage.SetIsImortal(false);
+        newEnemyDoDamage.SetHpAmount(newEnemyShipData.GetHp());
+        newEnemyDoDamage.SetDamageAmount(1); // Maybe we must change
+        // Add enemy control script        
         EnemyControl enemyControl = newEnemy.AddComponent<EnemyControl>();
-        List<GameObject> bullets = SelectEnemyBulletsPrefab(lvl, enemyPrefab.name);
+        // Add the correct bullets to the enemy game object     
+        List<GameObject> bullets = SelectEnemyBulletsPrefab(lvl, newEnemyPrefab.name);
         List<Bullet> bulletsData = SelectEnemyShipData(lvl, newEnemy.name).GetBullets();
         enemyControl.SetBullets(bulletsData);
         enemyControl.SetBulletsPrefab(bullets);
@@ -79,6 +91,10 @@ public class EnemyManager : MonoBehaviour
 
     private Ship SelectEnemyShipData(int lvl, string shipPrefabName){
         return this.enemyShipsDataPerLvl[lvl][shipPrefabName];
+    }
+
+    private GameObject SelectEnemyShipPrefab(int lvl, string name){
+        return this.enemyShipsPrefabPerLvl[lvl][name];
     }
 
     private List<GameObject> SelectEnemyBulletsPrefab(int lvl, string shipPrefabName){
@@ -91,11 +107,11 @@ public class EnemyManager : MonoBehaviour
         }
 
         return bullets;
-    }
+    }    
 
-    // Sort an enemy gameobject ship according to the lvl
+    // Sort an enemy ship name according to the lvl
     // (need improvements)
-    private GameObject SelectEnemyShipPrefab(int lvl){
+    private string SortEnemyShipName(int lvl){
         Dictionary<string, GameObject>.KeyCollection keys = this.enemyShipsPrefabPerLvl[lvl].Keys;
 
         int nKeys = keys.Count;
@@ -105,7 +121,7 @@ public class EnemyManager : MonoBehaviour
 
         foreach(KeyValuePair<string, GameObject> pair in this.enemyShipsPrefabPerLvl[lvl]){
             if(i == sortedKey){
-                return pair.Value;
+                return pair.Key;
             }
             i++;
         }

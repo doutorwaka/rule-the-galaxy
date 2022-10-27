@@ -43,10 +43,10 @@
      <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\BackgroundOffset.cs" />
+     <Compile Include="Assets\Scripts\DoDamage.cs" />
      <Compile Include="Assets\Scripts\CamFollowPlayer.cs" />
      <Compile Include="Assets\Scripts\Ship.cs" />
      <Compile Include="Assets\Scripts\PlayerControls.cs" />
-     <Compile Include="Assets\Scripts\DoDamage.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Unity\Editor\2021.3.9f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

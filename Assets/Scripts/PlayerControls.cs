@@ -7,6 +7,7 @@ public class PlayerControls : MonoBehaviour
     private GameObject playerShip = null;
     private Ship ship = null;
     private List<GameObject> bulletsPrefab;
+    private string playerBulletTag = "PlayerBullet";
     
     // Start is called before the first frame update
     void Start()
@@ -40,15 +41,19 @@ public class PlayerControls : MonoBehaviour
                 bullet.name = b.GetName();
                 bullet.transform.position = transform.position;
                 bullet.transform.rotation = transform.rotation;
-                bullet.tag = gameObject.tag;
-                
+                bullet.tag = playerBulletTag;
+
+                // Add bullet movement script to the bullet prefab
                 BulletMovement bmComp = bullet.AddComponent<BulletMovement>();
                 bmComp.SetMaxRange(b.GetMaxRange());
                 bmComp.SetSpeed(b.GetVelocity());
                 bmComp.setDirection(Vector3.up);
 
+                // Add DoDamage script to the bullet prefab
                 DoDamage bulletDamage = bullet.AddComponent<DoDamage>();
                 bulletDamage.SetDamageAmount(b.GetDamage());
+                bulletDamage.SetIsImortal(false);
+                bulletDamage.SetHpAmount(b.GetHp());
 
                 bullet.SetActive(true);
             }
@@ -89,8 +94,10 @@ public class PlayerControls : MonoBehaviour
 
     // Whenever a bullet should be add to the ship, we must use
     // this method.
-    public void AddBullet(Bullet bullet, GameObject bulletPrefab){
-        this.ship.AddBullet(bullet);
+    public void AddBullet(Bullet bulletData, GameObject bulletPrefab){
+        // Add the bullet data to the ship list
+        this.ship.AddBullet(bulletData);
+        // Add the bullet prefab to the ship bullet prefab list
         AddBulletPrefab(bulletPrefab);
     }
 
